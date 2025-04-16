@@ -22,7 +22,7 @@ const Services = () => {
         ;
 
     return (
-        <div className="min-h-screen bg-[#131313] text-white p-10">
+        <div className="min-h-screen bg-black text-white p-10">
             <h1 className="text-5xl font-bold text-center mb-10">Services</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {services.map((service, idx) => (

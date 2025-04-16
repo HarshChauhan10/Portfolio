@@ -23,7 +23,7 @@ const Education = () => {
     ];
 
     return (
-        <div className="bg-[#131313] text-white py-16 px-4 sm:px-8">
+        <div className="bg-[#080808] text-white py-16 px-4 sm:px-8">
             <h1 className="text-4xl sm:text-5xl font-bold text-center mb-16">Education</h1>
 
             <div className="relative max-w-4xl mx-auto">
