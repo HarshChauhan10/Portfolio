@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   -ms-overflow-style: none;
   /* IE and Edge */

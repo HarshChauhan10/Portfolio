@@ -75,7 +75,7 @@ const Exprience = () => {
     };
 
     return (
-        <div className="w-full flex flex-col items-center justify-center py-12 bg-black min-h-screen overflow-hidden text-white px-4">
+        <div className="w-full flex flex-col items-center justify-center py-12 bg-black min-h-screen overflow-hidden text-white px-4" id='exprience'>
             <h2 className="text-4xl sm:text-5xl font-bold text-center mb-16">Experience</h2>
 
             <div className="relative w-full max-w-7xl flex items-center justify-center">

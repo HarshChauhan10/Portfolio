@@ -14,7 +14,7 @@ import too from './too.jpg'
 import chef from './yourChef.png'
 import profile from './profile.webp'
 import pp from './pp.jpg'
-
+import enter from './enter.png'
 export const assets = {
     Bulb,
     css,
@@ -31,4 +31,5 @@ export const assets = {
     chef,
     profile,
     pp,
+    enter,
 }

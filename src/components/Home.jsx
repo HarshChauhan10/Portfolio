@@ -3,7 +3,7 @@ import { assets } from '../assets/assets';
 
 const Home = () => {
     return (
-        <div className="min-h-screen bg-[#080808] text-white flex items-center justify-center px-4 sm:px-6">
+        <div className="min-h-screen bg-[#080808] text-white flex items-center justify-center px-4 sm:px-6" id='home'>
             <div className="flex flex-col-reverse lg:flex-row items-center justify-between w-full max-w-7xl fade-in gap-10 py-14 sm:py-20">
 
                 {/* Left Section - Text */}
@@ -37,9 +37,16 @@ const Home = () => {
 
                     {/* Buttons */}
                     <div className="flex gap-4 justify-center lg:justify-start flex-wrap">
-                        <button className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
+                        <a
+                            href="https://mail.google.com/mail/?view=cm&fs=1&to=harshchauhan2867@gmail.com&su=Interested in Hiring You&body=Hi Harsh, I came across your portfolio and would love to connect!"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]"
+                        >
                             Hire
-                        </button>
+                        </a>
+
+
                         <button className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
                             Contact
                         </button>

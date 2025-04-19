@@ -24,7 +24,8 @@ const LandingPage = () => {
         >
             {showBulb ? (
                 <button onClick={handleClick} className="transition-transform duration-300 hover:scale-110">
-                    <img src={assets.Bulb} alt="Bulb" className="w-20" />
+                    <img src={assets.enter} alt="enter" className="w-20" />
+                    {/* <h1 className='text-white text-3xl'>Enter</h1> */}
                 </button>
             ) : (
                 error
