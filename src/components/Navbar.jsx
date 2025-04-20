@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto flex justify-between items-center">
 
                 {/* Left: HC */}
-                <div className="text-2xl sm:text-3xl font-extrabold tracking-widest">
+                <div className="text-2xl sm:text-3xl font-extrabold tracking-widest animate-3d-spin">
                     Harsh <span className='text-[#239797] drop-shadow-[0_0_20px_#00f6e7]'>Chauhan</span>
                 </div>
 

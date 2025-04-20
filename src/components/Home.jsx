@@ -47,7 +47,9 @@ const Home = () => {
                         </a>
 
 
-                        <button className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
+                        <button
+                            href={'#contact'}
+                            className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
                             Contact
                         </button>
                     </div>
