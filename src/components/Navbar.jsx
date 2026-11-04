@@ -1,64 +1,89 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Navbar = () => {
     const navItems = ['Home', 'Experience', 'Skills', 'Education', 'Services', 'Testimonials', 'Contact'];
     const [menuOpen, setMenuOpen] = useState(false);
+    const [active, setActive] = useState('home');
+
+    // Highlights the link of whichever section crosses the middle of the screen
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) setActive(entry.target.id);
+                });
+            },
+            { rootMargin: '-45% 0px -50% 0px' }
+        );
+        navItems.forEach((item) => {
+            const section = document.getElementById(item.toLowerCase());
+            if (section) observer.observe(section);
+        });
+        return () => observer.disconnect();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
-        <div className="w-full bg-black text-white px-6 py-4 shadow-md sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <header className="w-full bg-ink/80 backdrop-blur-md text-white border-b border-line sticky top-0 z-50">
+            <div className="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex justify-between items-center">
 
                 {/* Left: HC */}
-                <div className="text-2xl sm:text-3xl font-extrabold tracking-widest animate-3d-spin">
-                    Harsh <span className='text-[#239797] drop-shadow-[0_0_20px_#00f6e7]'>Chauhan</span>
-                </div>
+                <a href="#home" className="font-display text-xl font-bold tracking-tight animate-3d-spin">
+                    Harsh <span className="text-accent">Chauhan</span>
+                </a>
 
                 {/* Hamburger for mobile */}
                 <button
-                    className="lg:hidden cursor-pointer p-2 -mr-2"
+                    className="lg:hidden cursor-pointer p-3 -mr-3"
                     aria-label="Toggle menu"
                     aria-expanded={menuOpen}
                     onClick={() => setMenuOpen(!menuOpen)}
                 >
-                    <div className="space-y-1">
-                        <span className="block w-6 h-0.5 bg-white"></span>
-                        <span className="block w-6 h-0.5 bg-white"></span>
-                        <span className="block w-6 h-0.5 bg-white"></span>
+                    <div className="space-y-1.5">
+                        <span className={`block w-6 h-0.5 bg-white transition duration-200 ${menuOpen ? 'translate-y-2 rotate-45' : ''}`}></span>
+                        <span className={`block w-6 h-0.5 bg-white transition duration-200 ${menuOpen ? 'opacity-0' : ''}`}></span>
+                        <span className={`block w-6 h-0.5 bg-white transition duration-200 ${menuOpen ? '-translate-y-2 -rotate-45' : ''}`}></span>
                     </div>
                 </button>
 
                 {/* Right: Nav Links */}
-                <div className="hidden lg:flex gap-6 text-sm sm:text-base font-medium">
-                    {navItems.map((item, index) => (
-                        <a
-                            key={index}
-                            href={`#${item.toLowerCase()}`}
-                            className="relative group"
-                        >
-                            {item}
-                            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#239797] transition-all duration-300 group-hover:w-full group-focus:w-full group-active:w-full shadow-[0_0_8px_#239797]"></span>
-                        </a>
-                    ))}
-                </div>
+                <nav className="hidden lg:flex gap-7 text-sm font-medium">
+                    {navItems.map((item) => {
+                        const id = item.toLowerCase();
+                        return (
+                            <a
+                                key={item}
+                                href={`#${id}`}
+                                aria-current={active === id ? 'true' : undefined}
+                                className={`relative py-1 transition-colors duration-200 hover:text-white ${active === id ? 'text-white' : 'text-gray-400'}`}
+                            >
+                                {item}
+                                <span className={`absolute left-0 -bottom-0.5 h-0.5 bg-accent transition-all duration-300 ${active === id ? 'w-full' : 'w-0'}`}></span>
+                            </a>
+                        );
+                    })}
+                </nav>
             </div>
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="lg:hidden mt-4 flex flex-col gap-4 items-start px-2">
-                    {navItems.map((item, index) => (
-                        <a
-                            key={index}
-                            href={`#${item.toLowerCase()}`}
-                            onClick={() => setMenuOpen(false)}
-                            className="relative group"
-                        >
-                            {item}
-                            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#239797] transition-all duration-300 group-hover:w-full group-focus:w-full group-active:w-full shadow-[0_0_8px_#239797]"></span>
-                        </a>
-                    ))}
-                </div>
+                <nav className="lg:hidden border-t border-line px-5 sm:px-8 py-2">
+                    {navItems.map((item) => {
+                        const id = item.toLowerCase();
+                        return (
+                            <a
+                                key={item}
+                                href={`#${id}`}
+                                onClick={() => setMenuOpen(false)}
+                                className={`block py-3 font-medium ${active === id ? 'text-accent' : 'text-gray-300'}`}
+                            >
+                                {item}
+                            </a>
+                        );
+                    })}
+                </nav>
             )}
-        </div>
+        </header>
     );
 };
 

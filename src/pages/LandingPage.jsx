@@ -13,13 +13,16 @@ const LandingPage = () => {
     };
 
     return (
-        <div className="h-screen w-full flex justify-center items-center bg-black">
+        <div className="h-screen w-full flex justify-center items-center bg-black text-white">
             <button
                 onClick={handleClick}
-                className={`transition duration-1000 hover:scale-110 ${lightOn ? 'opacity-0 scale-125' : ''}`}
+                className={`group flex flex-col items-center gap-5 cursor-pointer transition duration-1000 ${lightOn ? 'opacity-0 scale-110' : ''}`}
             >
-                <img src={assets.enter} alt="enter" className="w-20" />
-                {/* <h1 className='text-white text-3xl'>Enter</h1> */}
+                <img src={assets.enter} alt="" className="w-20 transition-transform duration-300 group-hover:scale-110" />
+                <span className="font-display text-3xl font-bold tracking-tight">
+                    Harsh <span className="text-accent">Chauhan</span>
+                </span>
+                <span className="font-mono text-sm text-gray-400">Click to enter</span>
             </button>
         </div>
     );

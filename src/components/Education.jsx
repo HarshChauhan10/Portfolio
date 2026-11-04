@@ -1,4 +1,5 @@
 import React from "react";
+import SectionHeading from "./SectionHeading";
 
 const Education = () => {
     const educationData = [
@@ -22,53 +23,42 @@ const Education = () => {
         },
     ];
 
+    const publications = [
+        {
+            year: "2020",
+            title: "A Study on Recent Developments in Automated Machine Learning",
+            description: "Co-author, Solid State Technology",
+        },
+    ];
+
+    const renderRows = (rows) => (
+        <ul className="border-t border-line">
+            {rows.map((item) => (
+                <li key={item.title} className="reveal grid sm:grid-cols-[9rem_1fr] gap-1 sm:gap-6 py-5 border-b border-line">
+                    <p className="font-mono text-sm text-accent sm:pt-1">{item.year}</p>
+                    <div>
+                        <h4 className="font-display text-lg font-bold tracking-tight">{item.title}</h4>
+                        <p className="mt-1 text-sm text-gray-400 leading-relaxed">{item.description}</p>
+                    </div>
+                </li>
+            ))}
+        </ul>
+    );
+
     return (
-        <div className="bg-black text-white py-16 px-4 sm:px-8" id="education">
-            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12">Education</h2>
+        <section className="py-20 lg:py-28 text-white" id="education">
+            <div className="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1fr_2.2fr] gap-10 lg:gap-16">
+                <SectionHeading kicker="My background" title="Education" className="" />
 
-            <div className="relative max-w-4xl mx-auto">
-                {/* Vertical Line */}
-                <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-[#00f6e7]"></div>
+                <div>
+                    {renderRows(educationData)}
 
-                {educationData.map((item, index) => {
-                    const isLeft = index % 2 === 0;
-
-                    return (
-                        <div key={index} className="relative mb-6 sm:mb-10 last:mb-0">
-                            {/* Dot */}
-                            <div className="hidden sm:flex absolute left-1/2 transform -translate-x-1/2 top-4 w-5 h-5 bg-[#00f6e7] rounded-full shadow-[0_0_15px_#00f6e7] z-10 items-center justify-center">
-                                <div className="w-2.5 h-2.5 bg-black rounded-full"></div>
-                            </div>
-
-                            {/* Card Container */}
-                            <div
-                                className={`
-                                    flex w-full
-                                    ${isLeft ? "sm:justify-start" : "sm:justify-end"}
-                                    justify-center
-                                `}
-                            >
-                                <div className="w-full sm:w-[46%] bg-[#0f0f0f] border border-[#00f6e7] rounded-2xl px-6 py-4 shadow-[0_0_12px_rgba(0,246,231,0.35)]">
-                                    <p className="text-sm text-[#00f6e7] font-semibold mb-1">{item.year}</p>
-                                    <p className="text-lg font-bold mb-1">{item.title}</p>
-                                    <p className="text-gray-300 text-sm">{item.description}</p>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-
-            {/* Publications */}
-            <div className="max-w-4xl mx-auto mt-16" id="publications">
-                <h3 className="text-2xl sm:text-3xl font-bold text-center mb-6">Publications</h3>
-                <div className="bg-[#0f0f0f] border border-[#00f6e7] rounded-2xl px-6 py-4 shadow-[0_0_12px_rgba(0,246,231,0.35)]">
-                    <p className="text-sm text-[#00f6e7] font-semibold mb-1">2020</p>
-                    <p className="text-lg font-bold mb-1">A Study on Recent Developments in Automated Machine Learning</p>
-                    <p className="text-gray-300 text-sm">Co-author, Solid State Technology</p>
+                    {/* Publications */}
+                    <h3 id="publications" className="reveal font-display text-2xl font-bold tracking-tight mt-12 mb-5">Publications</h3>
+                    {renderRows(publications)}
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

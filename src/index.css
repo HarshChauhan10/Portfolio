@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink: #080808;
+  --color-panel: #0f0f0f;
+  --color-line: rgb(255 255 255 / 0.1);
+  --color-accent: #239797;
+  --color-neon: #00f6e7;
+}
 
 html {
   scroll-behavior: smooth;
@@ -8,27 +19,24 @@ html {
 }
 
 body {
+  background-color: var(--color-ink);
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
 }
 
-
-.fade-in {
-  animation: fadeIn 1.2s ease-in;
+::selection {
+  background-color: var(--color-accent);
+  color: #000;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+:focus-visible {
+  outline: 2px solid var(--color-neon);
+  outline-offset: 3px;
 }
 
 /* Hide scrollbar globally */
@@ -36,6 +44,10 @@ body {
   display: none;
 }
 
+/* Soft teal glow behind the hero */
+.hero-dots {
+  background-image: radial-gradient(ellipse 60% 70% at 80% 10%, rgb(35 151 151 / 0.22), transparent 70%);
+}
 
 @keyframes rotate3D {
   0% {
@@ -51,9 +63,39 @@ body {
   transform-style: preserve-3d;
 }
 
-.animate-3d-spin:hover {
-  animation: rotate3D 1.5s ease-in-out;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
 
-/* #259999 */
+  .animate-3d-spin:hover {
+    animation: rotate3D 1.5s ease-in-out;
+  }
+
+  /* Browsers without scroll timelines simply show the content straight away */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fadeIn linear both;
+      animation-timeline: view();
+      animation-range: entry 0px entry 140px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

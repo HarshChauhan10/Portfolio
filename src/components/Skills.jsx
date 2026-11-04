@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionHeading from './SectionHeading';
 
 const skills = [
     {
@@ -29,23 +30,26 @@ const skills = [
 
 const Skills = () => {
     return (
-        <div className="bg-[#080808] text-white py-16 px-4 sm:px-8" id="skills">
-            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12">Skills</h2>
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-                {skills.map((group) => (
-                    <div key={group.title} className="bg-[#121212] rounded-2xl p-6 border border-gray-700 transition-colors duration-300 hover:border-[#239797]">
-                        <h3 className="text-lg font-bold text-[#239797] mb-4">{group.title}</h3>
-                        <div className="flex flex-wrap gap-2">
-                            {group.items.map((skill) => (
-                                <span key={skill} className="text-sm text-gray-300 border border-gray-700 rounded-full px-3 py-1">
-                                    {skill}
-                                </span>
-                            ))}
+        <section className="bg-panel py-20 lg:py-28 text-white" id="skills">
+            <div className="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1fr_2.2fr] gap-10 lg:gap-16">
+                <SectionHeading kicker="What I work with" title="Skills" className="" />
+
+                <dl className="border-t border-line">
+                    {skills.map((group) => (
+                        <div key={group.title} className="reveal grid sm:grid-cols-[9rem_1fr] gap-3 sm:gap-6 py-5 border-b border-line">
+                            <dt className="font-mono text-sm text-accent sm:pt-1.5">{group.title}</dt>
+                            <dd className="flex flex-wrap gap-2">
+                                {group.items.map((skill) => (
+                                    <span key={skill} className="text-sm text-gray-200 bg-white/5 rounded-lg px-3 py-1.5">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </dd>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </dl>
             </div>
-        </div>
+        </section>
     );
 };
 

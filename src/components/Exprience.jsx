@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { assets } from '../assets/assets';
+import SectionHeading from './SectionHeading';
 
 const items = [
     {
         id: 6,
-        label: 'EXPERGO TECHNOLOGIES',
+        label: 'Expergo Technologies',
         role: 'Software Development Engineer 1',
         period: 'May 2025 – Present',
-        color: '#080808',
         description: 'Build core modules of EarlySafe, Expergo’s AI risk platform used by banks, NBFCs and HFCs for portfolio monitoring, early default detection and regulatory case management (React, Node/Express, MongoDB, PostgreSQL).',
         highlights: [
             'Early Warning System: Designed and built the EWS from scratch, flagging borrowers likely to default early and automating recovery workflows for housing finance institutions.',
@@ -24,8 +24,8 @@ const items = [
         label: 'RPK Recon360 – Enterprise Reconciliation Software',
         role: 'Full Stack Developer (Founding Engineer)',
         period: 'Sep 2024 – Apr 2025',
-        color: '#080808',
         image: assets.rekon,
+        imageClass: 'object-contain',
         description: 'Built a robust reconciliation platform for ATM, POS, and e-commerce transactions using the MERN stack (MongoDB, Express.js, React.js, Node.js). Designed to automate settlement workflows and ensure compliance with banking standards. The system supports real-time discrepancy detection, integrates with core banking and payment gateway systems, and provides customizable reporting tools for audits and fraud monitoring.',
         highlights: [
             'Built the enterprise reconciliation platform from the ground up for transaction matching and settlement.',
@@ -34,11 +34,11 @@ const items = [
     },
     {
         id: 3,
-        label: 'INMATESS UNIVERSE',
+        label: 'Inmatess Universe',
         role: 'Full Stack Developer (Freelance)',
         period: 'Aug 2024 – Nov 2024',
-        color: '#080808',
         image: assets.inmates,
+        imageClass: 'object-contain p-1',
         description: 'The fully functional website Inmatess was developed using the MERN stack. It includes a seamless review system, user-friendly admin panel, and mobile-responsive design. RESTful APIs ensure secure and efficient data flow. MongoDB manages fast, reliable storage and retrieval processes.',
         highlights: [
             'Built inmatess.com end to end with React.js, Node.js, Express, MongoDB and Tailwind CSS.',
@@ -46,11 +46,11 @@ const items = [
     },
     {
         id: 4,
-        label: 'TATA TECHNOLOGIES',
+        label: 'Tata Technologies',
         role: 'Solution Developer',
         period: 'Jan 2023 – Jul 2024',
-        color: '#080808',
         image: assets.tata,
+        imageClass: 'object-contain bg-white scale-125',
         description: 'Enhanced UX by implementing frontend solutions using HTML, CSS, JavaScript. Built plugins in Teamcenter, increased team productivity by 30% with automated emails, and reduced a 3-hour process to 5 minutes. Customized Teamcenter using ITK (C++) and optimized SQL database.',
         highlights: [
             'Built JavaScript plugins and C++ ITK customisations for Teamcenter PLM workflows.',
@@ -60,190 +60,104 @@ const items = [
     },
     {
         id: 5,
-        label: 'TOO DECIMAL PRIVATE LIMITED (Intern)',
-        color: '#080808',
+        label: 'Too Decimal Private Limited',
+        role: 'Intern',
         image: assets.too,
+        imageClass: 'object-cover object-left',
         description: 'Led the development of MPPL Jobs app, integrated Video CV, Google Maps, and location-based search. Engineered resume builder, and used advanced caching for faster performance.'
     },
     {
         id: 1,
-        label: 'YOUR CHEF',
-        color: '#080808',
+        label: 'Your Chef',
+        role: 'MERN Stack Project',
         image: assets.chef,
+        imageClass: 'object-cover',
         description: 'A smart and intuitive web application designed to help users discover delicious recipes using only the ingredients they already have at home. By focusing on ingredient-based searches, the app promotes minimal food waste, smart cooking, and budget-friendly meals. Users input available ingredients, and the app instantly returns recipes they can make without a trip to the store. Built using the MERN stack, the app delivers a seamless and responsive experience, ensuring quick and intuitive results. It’s perfect for daily meal planning or last-minute cooking.'
     },
 ];
 
-// Entries without a photo get a text panel in the same space
-const ItemVisual = ({ item, className }) => (
-    item.image ? (
-        <img src={item.image} alt={item.label} className={`${className} object-cover`} />
-    ) : (
-        <div className={`${className} flex items-center justify-center bg-[#0f0f0f] border-b border-[#239797] px-4`}>
-            <span className="text-2xl sm:text-4xl font-extrabold tracking-widest text-center text-[#239797]">
-                {item.label}
-            </span>
-        </div>
-    )
-);
+// Highlights that open with a short topic ("Risk scoring: ...") show that topic in bold
+const Highlight = ({ text }) => {
+    const match = text.match(/^([A-Z][A-Za-z ]+): (.*)$/);
+    if (!match) return text;
+    return (
+        <>
+            <strong className="font-semibold text-white">{match[1]}:</strong> {match[2]}
+        </>
+    );
+};
 
 const Exprience = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [openItem, setOpenItem] = useState(null);
-    const [hovered, setHovered] = useState(false);
-    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const [openIds, setOpenIds] = useState([items[0].id]);
 
-    const handleResize = () => setScreenWidth(window.innerWidth);
-
-    useEffect(() => {
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    const handlePrev = () => {
-        setActiveIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
-    };
-
-    const handleNext = () => {
-        setActiveIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
-    };
-
-    // Auto-slide, paused while a card is being read. Depending on activeIndex restarts the timer after a manual move.
-    useEffect(() => {
-        if (openItem || hovered) return;
-        const interval = setInterval(() => {
-            setActiveIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
-        }, 4000);
-        return () => clearInterval(interval);
-    }, [openItem, hovered, activeIndex]);
-
-    useEffect(() => {
-        if (!openItem) return;
-        const handleKey = (e) => {
-            if (e.key === 'Escape') setOpenItem(null);
-        };
-        window.addEventListener('keydown', handleKey);
-        return () => window.removeEventListener('keydown', handleKey);
-    }, [openItem]);
-
-    const circularOffset = (index, centerIndex, length) => {
-        const rawOffset = index - centerIndex;
-        const half = Math.floor(length / 2);
-        if (rawOffset > half) return rawOffset - length;
-        if (rawOffset < -half) return rawOffset + length;
-        return rawOffset;
-    };
-
-    const getTranslateX = (offset) => {
-        if (screenWidth < 640) return offset * 90; // Mobile
-        if (screenWidth < 1024) return offset * 120; // Tablet
-        return offset * 150; // Desktop
+    const toggle = (id) => {
+        setOpenIds((prev) => (prev.includes(id) ? prev.filter((openId) => openId !== id) : [...prev, id]));
     };
 
     return (
-        <div className="w-full flex flex-col items-center justify-center py-16 bg-black min-h-screen overflow-hidden text-white px-4" id="experience">
-            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12">Experience</h2>
+        <section className="py-20 lg:py-28 text-white" id="experience">
+            <div className="max-w-6xl mx-auto px-5 sm:px-8">
+                <SectionHeading kicker="Where I've worked" title="Experience" />
 
-            <div
-                className="relative w-full max-w-7xl flex items-center justify-center"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-            >
-                <button
-                    onClick={handlePrev}
-                    aria-label="Previous"
-                    className="absolute left-2 sm:left-4 z-30 px-3 sm:px-4 py-1 sm:py-2 text-2xl sm:text-3xl font-bold text-black bg-white rounded-full hover:scale-125 transition"
-                >
-                    ‹
-                </button>
-
-                <div className="relative w-full h-[460px] flex items-center justify-center transition-all duration-500 ease-in-out">
-                    {items.map((item, index) => {
-                        const offset = circularOffset(index, activeIndex, items.length);
-                        let zIndex = 20 - Math.abs(offset);
-                        let scale = 1 - Math.abs(offset) * 0.1;
-                        let translateX = getTranslateX(offset);
-                        // Only two cards show on each side, so the stack stays symmetrical
-                        let hidden = Math.abs(offset) > 2;
-                        let opacity = hidden ? 0 : 1 - Math.abs(offset) * 0.2;
-
+                <ol className="border-t border-line">
+                    {items.map((item) => {
+                        const isOpen = openIds.includes(item.id);
                         return (
-                            <div
-                                key={item.id}
-                                onClick={() => setOpenItem(item)}
-                                className="absolute transition-all duration-500 ease-in-out rounded-lg shadow-lg cursor-pointer overflow-hidden flex flex-col"
-                                style={{
-                                    width: screenWidth < 640 ? '90%' : screenWidth < 1024 ? '400px' : '550px',
-                                    height: '430px',
-                                    border: '2px solid #00FEED',
-                                    boxShadow: offset === 0 ? '0 0 18px rgba(0, 246, 231, 0.55)' : 'none',
-                                    transform: `translateX(${translateX}px) scale(${scale})`,
-                                    backgroundColor: item.color,
-                                    zIndex,
-                                    opacity,
-                                    pointerEvents: hidden ? 'none' : 'auto',
-                                }}
-                            >
-                                <ItemVisual item={item} className="w-full h-[58%] shrink-0" />
-                                <div className="flex-1 p-4 flex flex-col items-center justify-center gap-1 text-center">
-                                    <p className="font-semibold text-white text-sm sm:text-base">{item.label}</p>
-                                    {item.role && <p className="text-[#239797] text-sm font-medium">{item.role}</p>}
-                                    {item.period && <p className="text-gray-400 text-xs sm:text-sm">{item.period}</p>}
-                                    <p className="text-gray-500 text-xs mt-1">Click for details</p>
+                            <li key={item.id} className="reveal border-b border-line">
+                                <h3>
+                                    <button
+                                        onClick={() => toggle(item.id)}
+                                        aria-expanded={isOpen}
+                                        aria-controls={`experience-${item.id}`}
+                                        className="group w-full flex items-center gap-4 sm:gap-6 py-5 sm:py-6 text-left cursor-pointer"
+                                    >
+                                        <span className="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-line bg-black flex items-center justify-center">
+                                            {item.image ? (
+                                                <img src={item.image} alt="" loading="lazy" className={`w-full h-full ${item.imageClass}`} />
+                                            ) : (
+                                                <span className="font-display text-2xl font-bold text-accent">{item.label[0]}</span>
+                                            )}
+                                        </span>
+                                        <span className="flex-1 min-w-0">
+                                            <span className="block font-display text-lg sm:text-xl font-bold tracking-tight transition-colors duration-200 group-hover:text-accent">
+                                                {item.label}
+                                            </span>
+                                            <span className="block mt-1 text-sm text-gray-300">{item.role}</span>
+                                            {item.period && <span className="sm:hidden block mt-1 font-mono text-xs text-gray-400">{item.period}</span>}
+                                        </span>
+                                        {item.period && <span className="hidden sm:block shrink-0 font-mono text-sm text-gray-400">{item.period}</span>}
+                                        <span
+                                            className={`shrink-0 w-8 h-8 rounded-full border border-line flex items-center justify-center text-gray-300 transition duration-300 group-hover:border-accent group-hover:text-accent ${isOpen ? 'rotate-45' : ''}`}
+                                            aria-hidden="true"
+                                        >
+                                            +
+                                        </span>
+                                    </button>
+                                </h3>
+
+                                <div
+                                    id={`experience-${item.id}`}
+                                    className={`grid transition-[grid-template-rows,visibility] duration-300 ease-out ${isOpen ? 'grid-rows-[1fr] visible' : 'grid-rows-[0fr] invisible'}`}
+                                >
+                                    <div className="overflow-hidden">
+                                        <div className="pb-7 sm:pl-[5.5rem] sm:pr-14 max-w-4xl">
+                                            <p className="text-gray-300 leading-relaxed">{item.description}</p>
+                                            {item.highlights && (
+                                                <ul className="mt-4 space-y-2.5 list-disc pl-5 marker:text-accent text-sm text-gray-400 leading-relaxed">
+                                                    {item.highlights.map((point) => (
+                                                        <li key={point}><Highlight text={point} /></li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </li>
                         );
                     })}
-                </div>
-
-                <button
-                    onClick={handleNext}
-                    aria-label="Next"
-                    className="absolute right-2 sm:right-4 z-30 px-3 sm:px-4 py-1 sm:py-2 text-2xl sm:text-3xl font-bold text-black bg-white rounded-full hover:scale-125 transition"
-                >
-                    ›
-                </button>
+                </ol>
             </div>
-
-            {openItem && (
-                <div
-                    className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4"
-                    onClick={() => setOpenItem(null)}
-                >
-                    <div
-                        className="bg-[#131313] text-white w-full max-w-md sm:max-w-2xl p-4 sm:p-6 rounded-xl shadow-[0_0_24px_rgba(0,246,231,0.5)] relative max-h-[90vh] overflow-y-auto transition duration-300"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-label={openItem.label}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <button
-                            onClick={() => setOpenItem(null)}
-                            aria-label="Close"
-                            className="absolute top-2 right-3 z-10 text-xl sm:text-2xl font-bold hover:text-red-500"
-                        >
-                            ✕
-                        </button>
-                        <ItemVisual item={openItem} className="w-full h-40 sm:h-52 rounded-md mb-4" />
-                        <h3 className="text-xl sm:text-2xl font-bold mb-1">{openItem.label}</h3>
-                        {(openItem.role || openItem.period) && (
-                            <p className="text-sm mb-3">
-                                <span className="text-[#239797] font-medium">{openItem.role}</span>
-                                <span className="text-gray-400"> · {openItem.period}</span>
-                            </p>
-                        )}
-                        <p className="text-sm sm:text-base text-gray-300 leading-relaxed">{openItem.description}</p>
-                        {openItem.highlights && (
-                            <ul className="mt-4 space-y-2 list-disc pl-5 marker:text-[#239797] text-sm text-gray-300 leading-relaxed">
-                                {openItem.highlights.map((point, index) => (
-                                    <li key={index}>{point}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-                </div>
-            )}
-        </div>
+        </section>
     );
 };
 

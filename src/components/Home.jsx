@@ -1,91 +1,115 @@
 import React from 'react';
 import { assets } from '../assets/assets';
 
+const stats = [
+    { value: '~4 yrs', label: 'Building fintech and enterprise platforms' },
+    { value: '8-layer', label: 'CIBIL-style risk scoring engine' },
+    { value: '~70%', label: 'Less engineering dependency with a no-code workflow engine' },
+    { value: '30–50%', label: 'Faster queries after leading the PostgreSQL migration' },
+];
+
+const techStack = [
+    { src: assets.mongodb, alt: 'MongoDB' },
+    { src: assets.express, alt: 'Express' },
+    { src: assets.reactt, alt: 'React' },
+    { src: assets.node, alt: 'Node.js' },
+    { src: assets.html, alt: 'HTML' },
+    { src: assets.css, alt: 'CSS' },
+    { src: assets.tailwind, alt: 'Tailwind' },
+];
+
+const primaryButton = "bg-accent text-black font-semibold px-6 py-3 rounded-full transition duration-200 hover:bg-white";
+const secondaryButton = "border border-white/20 text-white font-semibold px-6 py-3 rounded-full transition duration-200 hover:border-accent hover:text-accent";
+
 const Home = () => {
     return (
-        <div className="min-h-screen bg-[#080808] text-white flex items-center justify-center px-4 sm:px-6" id='home'>
-            <div className="flex flex-col-reverse lg:flex-row items-center justify-between w-full max-w-7xl fade-in gap-10 py-14 sm:py-20">
+        <section className="relative overflow-hidden text-white" id='home'>
+            <div className="hero-dots absolute inset-0 pointer-events-none" aria-hidden="true"></div>
 
-                {/* Left Section - Text */}
-                <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-                        Hi, It's <span className="text-[#239797]">Harsh Chauhan</span>
-                    </h1>
-                    <div className="space-y-1">
-                        <h2 className="text-lg sm:text-xl md:text-2xl font-medium text-gray-300">
-                            I'm a <span className="text-[#239797]">Full Stack Developer</span>
+            <div className="relative max-w-6xl mx-auto px-5 sm:px-8 fade-in">
+                <div className="grid lg:grid-cols-[1.25fr_1fr] gap-14 lg:gap-16 items-center pt-14 pb-16 lg:pt-20 lg:pb-20">
+
+                    {/* Left Section - Text */}
+                    <div>
+                        <p className="font-mono text-sm text-accent mb-4">Hi, It's</p>
+                        <h1 className="font-display text-6xl sm:text-7xl xl:text-8xl font-bold tracking-tight leading-[0.95]">
+                            Harsh<br /><span className="text-accent">Chauhan</span>
+                        </h1>
+                        <h2 className="mt-6 text-xl sm:text-2xl font-medium text-gray-200">
+                            I'm a Full Stack Developer
                         </h2>
-                        <p className="text-gray-500 text-sm">Software Development Engineer 1 at Expergo Technologies · Gurugram</p>
+                        <p className="mt-4 max-w-xl text-gray-400 leading-relaxed">
+                            Full stack developer with nearly 4 years building fintech and enterprise platforms with the MERN stack
+                            and PostgreSQL. Built early-warning, risk-scoring and case-management systems used by banks and NBFCs,
+                            and works directly with CEO/CTO stakeholders to turn complex financial and regulatory processes into
+                            scalable software. Collaborative team player with a proven track record of successfully managing
+                            projects from concept to completion.
+                        </p>
+
+                        {/* Buttons */}
+                        <div className="mt-8 flex gap-3 flex-wrap">
+                            <a
+                                href="https://mail.google.com/mail/?view=cm&fs=1&to=harshchauhan2867@gmail.com&su=Interested in Hiring You&body=Hi Harsh, I came across your portfolio and would love to connect!"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={primaryButton}
+                            >
+                                Hire
+                            </a>
+                            <a href="#contact" className={secondaryButton}>
+                                Contact
+                            </a>
+                            <a href="https://www.linkedin.com/in/harsh-chauhan10/" target="_blank" rel="noopener noreferrer" className={secondaryButton}>
+                                LinkedIn
+                            </a>
+                            <a href="https://github.com/HarshChauhan10" target="_blank" rel="noopener noreferrer" className={secondaryButton}>
+                                GitHub
+                            </a>
+                        </div>
+
+                        {/* Tech Stack Icons */}
+                        <div className="mt-10 flex flex-wrap items-center gap-4">
+                            {techStack.map((tech) => (
+                                <img key={tech.alt} src={tech.src} alt={tech.alt} title={tech.alt} className="w-8 h-8 object-contain" />
+                            ))}
+                            <span className="text-gray-400 text-sm">& much more...</span>
+                        </div>
                     </div>
-                    <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
-                        Full stack developer with nearly 4 years building fintech and enterprise platforms with the MERN stack
-                        and PostgreSQL. Built early-warning, risk-scoring and case-management systems used by banks and NBFCs,
-                        and works directly with CEO/CTO stakeholders to turn complex financial and regulatory processes into
-                        scalable software. Collaborative team player with a proven track record of successfully managing
-                        projects from concept to completion.
-                    </p>
 
-                    {/* Tech Stack Icons */}
-                    <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                        <img src={assets.mongodb} alt="MongoDB" className="w-10 h-10" />
-                        <img src={assets.express} alt="Express" className="w-10 h-10" />
-                        <img src={assets.reactt} alt="React" className="w-10 h-10" />
-                        <img src={assets.node} alt="Node.js" className="w-10 h-10" />
-                        <img src={assets.html} alt="HTML" className="w-10 h-10" />
-                        <img src={assets.css} alt="CSS" className="w-10 h-10" />
-                        <img src={assets.tailwind} alt="Tailwind" className="w-10 h-10" />
-                    </div>
-
-                    <p className="text-gray-500 text-sm">& much more...</p>
-
-                    {/* Buttons */}
-                    <div className="flex gap-4 justify-center lg:justify-start flex-wrap">
-                        <a
-                            href="https://mail.google.com/mail/?view=cm&fs=1&to=harshchauhan2867@gmail.com&su=Interested in Hiring You&body=Hi Harsh, I came across your portfolio and would love to connect!"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]"
-                        >
-                            Hire
-                        </a>
-
-
-                        <a
-                            href="#contact"
-                            className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
-                            Contact
-                        </a>
-
-                        <a
-                            href="https://www.linkedin.com/in/harsh-chauhan10/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
-                            LinkedIn
-                        </a>
-
-                        <a
-                            href="https://github.com/HarshChauhan10"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
-                            GitHub
-                        </a>
-                    </div>
-                </div>
-
-                {/* Right Section - Profile Image */}
-                <div className="w-full lg:w-1/2 flex justify-center items-center">
-                    <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 xl:w-96 xl:h-96 rounded-full bg-[#239797]/10 border border-[#239797] p-2 flex items-center justify-center shadow-lg hover:shadow-[0_0_20px_#00f6e7]">
+                    {/* Right Section - Profile Image */}
+                    <div className="relative w-full max-w-sm mx-auto lg:max-w-md lg:mr-0 pr-3 pb-3">
+                        <div className="absolute inset-0 top-3 left-3 rounded-3xl border border-accent/60" aria-hidden="true"></div>
                         <img
-                            src={assets.pp}
-                            alt="Profile"
-                            className="rounded-full w-full h-full object-cover border-4 border-[#239797] shadow-[0_0_20px_#00f6e7]"
+                            src={assets.hero}
+                            alt="Harsh Chauhan"
+                            width="800"
+                            height="1000"
+                            className="relative w-full aspect-[4/5] object-cover rounded-3xl"
                         />
+                        <div className="absolute left-4 right-7 bottom-7 bg-ink/90 border border-line rounded-2xl px-4 py-3">
+                            <p className="flex items-center gap-2 font-mono text-xs text-gray-300">
+                                <span className="w-2 h-2 rounded-full bg-neon" aria-hidden="true"></span>
+                                Currently · Gurugram
+                            </p>
+                            <p className="mt-1 text-sm font-semibold">Software Development Engineer 1 at Expergo Technologies</p>
+                        </div>
                     </div>
                 </div>
+
+                {/* Stats from the resume */}
+                <dl className="grid grid-cols-2 lg:grid-cols-4 border-t border-line">
+                    {stats.map((stat, index) => (
+                        <div
+                            key={stat.value}
+                            className={`py-7 lg:pr-6 ${index % 2 === 1 ? 'pl-5 border-l border-line' : 'pr-5'} ${index > 0 ? 'lg:pl-6 lg:border-l lg:border-line' : ''} ${index > 1 ? 'border-t border-line lg:border-t-0' : ''}`}
+                        >
+                            <dt className="font-display text-3xl sm:text-4xl font-bold tracking-tight">{stat.value}</dt>
+                            <dd className="mt-2 text-sm text-gray-400 leading-snug">{stat.label}</dd>
+                        </div>
+                    ))}
+                </dl>
             </div>
-        </div>
+        </section>
     );
 };
 
