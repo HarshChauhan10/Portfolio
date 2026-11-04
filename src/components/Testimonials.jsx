@@ -36,18 +36,18 @@ const Testimonials = () => {
         <section className="py-20 lg:py-28 text-white" id='testimonials'>
             <div className="max-w-6xl mx-auto px-5 sm:px-8">
                 <SectionHeading kicker="What people say" title="Testimonials" />
-                {/* Columns let the short and long reviews pack together without gaps */}
-                <div className="md:columns-2 gap-6">
+                {/* Equal rows keep every card the same size, however long its review is */}
+                <div className="grid gap-6 md:grid-cols-2 md:auto-rows-fr">
                     {testimonials.map((t) => (
                         <figure
                             key={t.name}
-                            className="reveal break-inside-avoid mb-6 bg-panel rounded-2xl p-7 border border-line transition-colors duration-300 hover:border-accent/60"
+                            className="reveal flex flex-col bg-panel rounded-2xl p-7 border border-line transition-colors duration-300 hover:border-accent/60"
                         >
                             <div className="text-yellow-400 text-sm tracking-widest" aria-label={`${t.rating} out of 5 stars`}>
                                 {'★'.repeat(t.rating)}
                             </div>
                             <blockquote className="mt-4 text-gray-300 leading-relaxed">{t.review}</blockquote>
-                            <figcaption className="mt-6 flex items-center gap-3">
+                            <figcaption className="mt-auto pt-6 flex items-center gap-3">
                                 <span className="shrink-0 w-11 h-11 rounded-full bg-accent/15 border border-accent/50 text-accent font-display font-bold flex items-center justify-center" aria-hidden="true">
                                     {initials(t.name)}
                                 </span>

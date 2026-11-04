@@ -77,16 +77,15 @@ const Home = () => {
                     </div>
 
                     {/* Right Section - Profile Image */}
-                    <div className="relative w-full max-w-sm mx-auto lg:max-w-md lg:mr-0 pr-3 pb-3">
-                        <div className="absolute inset-0 top-3 left-3 rounded-3xl border border-accent/60" aria-hidden="true"></div>
+                    <div className="relative w-full max-w-sm mx-auto lg:max-w-md lg:mr-0 p-2 rounded-[2rem] border border-accent transition duration-300 hover:border-neon hover:shadow-[0_0_30px_#00f6e7]">
                         <img
                             src={assets.hero}
                             alt="Harsh Chauhan"
                             width="800"
                             height="1000"
-                            className="relative w-full aspect-[4/5] object-cover rounded-3xl"
+                            className="w-full aspect-[4/5] object-cover rounded-3xl"
                         />
-                        <div className="absolute left-4 right-7 bottom-7 bg-ink/90 border border-line rounded-2xl px-4 py-3">
+                        <div className="absolute left-5 right-5 bottom-5 bg-ink/90 border border-line rounded-2xl px-4 py-3">
                             <p className="flex items-center gap-2 font-mono text-xs text-gray-300">
                                 <span className="w-2 h-2 rounded-full bg-neon" aria-hidden="true"></span>
                                 Currently · Gurugram
