@@ -3,6 +3,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keeps section headings clear of the sticky navbar */
+  scroll-padding-top: 72px;
 }
 
 body {
@@ -46,8 +48,11 @@ body {
 }
 
 .animate-3d-spin {
-  animation: rotate3D 8s linear infinite;
   transform-style: preserve-3d;
+}
+
+.animate-3d-spin:hover {
+  animation: rotate3D 1.5s ease-in-out;
 }
 
 

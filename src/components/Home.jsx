@@ -7,19 +7,22 @@ const Home = () => {
             <div className="flex flex-col-reverse lg:flex-row items-center justify-between w-full max-w-7xl fade-in gap-10 py-14 sm:py-20">
 
                 {/* Left Section - Text */}
-                <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left mt-10">
+                <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
                         Hi, It's <span className="text-[#239797]">Harsh Chauhan</span>
                     </h1>
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-medium text-gray-300">
-                        I'm a <span className="text-[#239797]">MERN Stack Developer</span>
-                    </h2>
+                    <div className="space-y-1">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-medium text-gray-300">
+                            I'm a <span className="text-[#239797]">Full Stack Developer</span>
+                        </h2>
+                        <p className="text-gray-500 text-sm">Software Development Engineer 1 at Expergo Technologies · Gurugram</p>
+                    </div>
                     <p className="text-gray-400 leading-relaxed text-sm sm:text-base">
-                        Versatile MERN Stack Developer with 2.5 years of experience, specializing in creating robust,
-                        scalable web applications. Strong proficiency in MongoDB, Express.js, React, and Node.js, ensuring
-                        seamless integration and optimal performance. Demonstrates exceptional problem-solving skills,
-                        delivering innovative solutions that enhance user experience and drive business growth. Collaborative
-                        team player with a proven track record of successfully managing projects from concept to completion.
+                        Full stack developer with nearly 4 years building fintech and enterprise platforms with the MERN stack
+                        and PostgreSQL. Built early-warning, risk-scoring and case-management systems used by banks and NBFCs,
+                        and works directly with CEO/CTO stakeholders to turn complex financial and regulatory processes into
+                        scalable software. Collaborative team player with a proven track record of successfully managing
+                        projects from concept to completion.
                     </p>
 
                     {/* Tech Stack Icons */}
@@ -52,12 +55,28 @@ const Home = () => {
                             className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
                             Contact
                         </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/harsh-chauhan10/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
+                            LinkedIn
+                        </a>
+
+                        <a
+                            href="https://github.com/HarshChauhan10"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="border border-[#239797] text-[#239797] font-semibold px-6 py-2 rounded-full transition hover:bg-[#239797] hover:text-black hover:shadow-[0_0_20px_#00f6e7]">
+                            GitHub
+                        </a>
                     </div>
                 </div>
 
                 {/* Right Section - Profile Image */}
-                <div className="w-full lg:w-1/2 flex justify-center items-center -mt-10">
-                    <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 xl:w-96 xl:h-96 rounded-full bg-[#239797] bg-opacity-10 border border-[#239797] p-2 flex items-center justify-center shadow-lg hover:shadow-[0_0_20px_#00f6e7]">
+                <div className="w-full lg:w-1/2 flex justify-center items-center">
+                    <div className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 xl:w-96 xl:h-96 rounded-full bg-[#239797]/10 border border-[#239797] p-2 flex items-center justify-center shadow-lg hover:shadow-[0_0_20px_#00f6e7]">
                         <img
                             src={assets.pp}
                             alt="Profile"

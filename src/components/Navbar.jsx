@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Navbar = () => {
-    const navItems = ['Home', 'Exprience', 'Education', 'Services', 'Testimonials', 'Contact'];
+    const navItems = ['Home', 'Experience', 'Skills', 'Education', 'Services', 'Testimonials', 'Contact'];
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -14,13 +14,18 @@ const Navbar = () => {
                 </div>
 
                 {/* Hamburger for mobile */}
-                <div className="lg:hidden cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
+                <button
+                    className="lg:hidden cursor-pointer p-2 -mr-2"
+                    aria-label="Toggle menu"
+                    aria-expanded={menuOpen}
+                    onClick={() => setMenuOpen(!menuOpen)}
+                >
                     <div className="space-y-1">
                         <span className="block w-6 h-0.5 bg-white"></span>
                         <span className="block w-6 h-0.5 bg-white"></span>
                         <span className="block w-6 h-0.5 bg-white"></span>
                     </div>
-                </div>
+                </button>
 
                 {/* Right: Nav Links */}
                 <div className="hidden lg:flex gap-6 text-sm sm:text-base font-medium">

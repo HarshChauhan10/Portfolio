@@ -17,21 +17,29 @@ const Services = () => {
         {
             title: 'Testing',
             description: 'Ensuring application reliability and performance through rigorous manual and automated testing processes across different environments.',
+        },
+        {
+            title: 'AI Integration',
+            description: 'Adding LLMs, RAG and AI agents to real products, from AI-generated summaries to insights and calculations on top of business data.',
+        },
+        {
+            title: 'Automation & Dashboards',
+            description: 'Automating manual processes with workflow engines and batch pipelines, and building data dashboards that make complex operations easy to monitor.',
         }
     ]
         ;
 
     return (
-        <div className="min-h-screen bg-black text-white p-10 scroll-mt-17" id='services'>
-            <h1 className="text-5xl font-bold text-center mb-10">Services</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="bg-[#080808] text-white py-16 px-4 sm:px-8" id='services'>
+            <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12">Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {services.map((service, idx) => (
                     <div
                         key={idx}
-                        className="p-6 rounded-2xl transition-all duration-300 bg-[#239797] text-black hover:bg-white shadow-lg"
+                        className="p-8 rounded-2xl transition-all duration-300 bg-[#239797] text-black hover:bg-white shadow-lg"
                     >
-                        <h3 className="text-xl font-bold mt-10 mb-4 ">{service.title}</h3>
-                        <p className='mb-10'> {service.description}</p>
+                        <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                        <p className="leading-relaxed">{service.description}</p>
                     </div>
                 ))}
             </div>
